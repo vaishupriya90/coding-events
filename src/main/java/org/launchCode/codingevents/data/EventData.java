@@ -23,12 +23,12 @@ public class EventData {
     }
 
     // get a single event
-    private static Event getById(int id){
+    public static Event getById(int id){
         return events.get(id);
     }
 
     // remove an event
-    private static void remove(int id){
+    public static void remove(int id){
         events.remove(id);
     }
 
