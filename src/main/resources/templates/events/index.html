@@ -11,11 +11,13 @@
 <table class="table table-striped">
     <thead>
     <tr>
+        <th>Event ID</th>
         <th>Event Name</th>
         <th>Description</th>
     </tr>
     </thead>
     <tr th:each="event:${events}">
+        <td th:text="${event.getId()}"></td>
         <td th:text="${event.getName()}"></td>
         <td th:text="${event.getDescription()}"></td>
 
