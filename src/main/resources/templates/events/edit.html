@@ -3,23 +3,26 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container">
+
     <nav th:replace="fragments :: navigationLinks"></nav>
 
-    <form action="/events/create" method="post">
+    <form method="post" action="/events/edit">
         <div class="from-group">
             <label>Event Name
-            <input  type="text" name="name" class="form-control"/>
+            <input class="form-control" name="name" th:value="${event.getName()}" type="text"/>
             </label>
         </div>
         <div class="from-group">
             <label>Event Description
-                <input  type="text" name="description" class="form-control"/>
+                <input class="form-control" name="description" th:value="${event.getDescription()}" type="text"/>
             </label>
         </div>
-        
+        <input type="hidden" name="eventId" th:value="${event.getId()}">
+
         <div class="form-group">
-           <input type="submit" value="Create Event" class="btn btn-success"/>
-       </div>
+            <input class="btn btn-success" type="submit" value="Edit Event"/>
+        </div>
     </form>
+
 </body>
 </html>

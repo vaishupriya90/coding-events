@@ -45,6 +45,21 @@ public class EventController {
             }
         }
         return "redirect:";
-
+    }
+    @GetMapping("edit/{eventId}")
+    public String RenderEditEventForm(Model model,@PathVariable int eventId){
+        Event eventToBeEdited = EventData.getById(eventId);
+        model.addAttribute("event",eventToBeEdited);
+        String heading = "Edit Event: "+ eventToBeEdited.getName()+"(ID:"+eventToBeEdited.getId()+")";
+        model.addAttribute("title",heading);
+        return "events/edit";
+    }
+    @PostMapping("edit")
+    public String editEvent(@RequestParam int eventId,@RequestParam String name,@RequestParam String description){
+//        Event eventToBeEdited = EventData.getById(eventId);
+//        eventToBeEdited.setName(name);
+//        eventToBeEdited.setDescription(description);
+        EventData.edit(eventId,name,description);
+        return "redirect:";
     }
 }
