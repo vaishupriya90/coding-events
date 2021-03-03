@@ -54,7 +54,7 @@ public class EventController {
         model.addAttribute("title",heading);
         return "events/edit";
     }
-    @PostMapping("edit")
+    @PutMapping("edit")
     public String editEvent(@RequestParam int eventId,@RequestParam String name,@RequestParam String description){
 //        Event eventToBeEdited = EventData.getById(eventId);
 //        eventToBeEdited.setName(name);

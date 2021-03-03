@@ -6,7 +6,7 @@
 
     <nav th:replace="fragments :: navigationLinks"></nav>
 
-    <form method="post" action="/events/edit">
+    <form th:method="put" action="/events/edit">
         <div class="from-group">
             <label>Event Name
             <input class="form-control" name="name" th:value="${event.getName()}" type="text"/>
