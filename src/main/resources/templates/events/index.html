@@ -15,6 +15,9 @@
         <th>Event Name</th>
         <th>Description</th>
         <th>Contact Email</th>
+        <th>Event Location</th>
+        <th>Number Of Attendees</th>
+
     </tr>
     </thead>
     <tr th:each="event:${events}">
@@ -22,6 +25,8 @@
         <td th:text="${event.getName()}"></td>
         <td th:text="${event.getDescription()}"></td>
         <td th:text="${event.getContactEmail()}"></td>
+        <td th:text="${event.getLocation}"></td>
+        <td th:text="${event.getNumberOfAttendees()}"></td>
         <td><a th:href="@{/events/edit/{id} (id=${event.getId()})}">Edit</a></td>
 
     </tr>

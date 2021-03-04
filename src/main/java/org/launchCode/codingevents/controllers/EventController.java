@@ -32,7 +32,6 @@ public class EventController {
     public String createEvent(@ModelAttribute @Valid Event newEvent, Errors errors,Model model) {
         if(errors.hasErrors()){
             model.addAttribute("title","Create Event");
-            //model.addAttribute("errorMsg","Invalid Entries! Please check!");
             return "events/create";
         }
         EventData.add(newEvent);
@@ -64,11 +63,18 @@ public class EventController {
         return "events/edit";
     }
     @PutMapping("edit")
-    public String editEvent(@RequestParam int eventId,@RequestParam String name,@RequestParam String description){
+    public String editEvent(@ModelAttribute @Valid Event event,int eventId,Errors errors,Model model){
+        if(errors.hasErrors()){
+            Event eventToBeEdited = EventData.getById(eventId);
+            model.addAttribute("event",eventToBeEdited);
+            String heading = "Edit Event: "+ eventToBeEdited.getName()+"(ID:"+eventToBeEdited.getId()+")";
+            model.addAttribute("title",heading);
+            return "events/edit";
+        }
 //        Event eventToBeEdited = EventData.getById(eventId);
 //        eventToBeEdited.setName(name);
 //        eventToBeEdited.setDescription(description);
-        EventData.edit(eventId,name,description);
+        EventData.edit(event,eventId);
         return "redirect:";
     }
 }

@@ -17,6 +17,21 @@
                 <input class="form-control" name="description" th:value="${event.getDescription()}" type="text"/>
             </label>
         </div>
+        <div class="from-group">
+            <label>Contact Email
+                <input class="form-control" name="contactEmail" th:value="${event.getContactEmail()}" type="text"/>
+            </label>
+        </div>
+        <div class="from-group">
+            <label>Event Location
+                <input class="form-control" name="location" th:value="${event.getLocation()}" type="text"/>
+            </label>
+        </div>
+        <div class="from-group">
+            <label>Number Of Attendees
+                <input type="number" class="form-control" name="numberOfAttendees" th:value="${event.getNumberOfAttendees()}"/>
+            </label>
+        </div>
         <input type="hidden" name="eventId" th:value="${event.getId()}">
 
         <div class="form-group">

@@ -32,10 +32,12 @@ public class EventData {
         events.remove(id);
     }
 
-    public static void edit(int id, String name,String description){
+    public static void edit(Event eve,int id){
         Event event = EventData.getById(id);
-        event.setName(name);
-        event.setDescription(description);
+        event.setName(eve.getName());
+        event.setDescription(eve.getDescription());
+        event.setLocation(eve.getLocation());
+        event.setNumberOfAttendees(eve.getNumberOfAttendees());
     }
 
 }
