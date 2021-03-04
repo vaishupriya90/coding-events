@@ -23,16 +23,14 @@ public class EventController {
     @GetMapping("create")
     public String renderCreateEventForm(Model model) {
         model.addAttribute("title","Create Event");
-        model.addAttribute("event",new Event());
         return "events/create";
     }
 
     //lives at /events/create -->post method
     @PostMapping("create")
-    public String createEvent(@ModelAttribute @Valid Event newEvent, Errors errors,Model model) {
+    public String createEvent( @Valid @ModelAttribute Event newEvent, Errors errors,Model model) {
         if(errors.hasErrors()){
             model.addAttribute("title","Create Event");
-            //model.addAttribute("errorMsg","Invalid Entries! Please check!");
             return "events/create";
         }
         EventData.add(newEvent);

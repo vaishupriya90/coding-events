@@ -1,8 +1,6 @@
 package org.launchCode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 
 import java.util.Objects;
@@ -23,6 +21,7 @@ public class Event {
     private String contactEmail;
 
 
+
     public Event(String name,String description,String contactEmail) {
         this.name = name;
         this.description = description;
@@ -30,7 +29,6 @@ public class Event {
         this.id = nextId;
         nextId++;
     }
-    public Event(){}
 
     public String getName() {
         return name;
@@ -55,6 +53,7 @@ public class Event {
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
     }
+
 
     public int getId() {
         return id;
