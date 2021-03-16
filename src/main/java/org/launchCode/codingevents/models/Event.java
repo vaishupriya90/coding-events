@@ -1,8 +1,11 @@
 package org.launchCode.codingevents.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.*;
 
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Event {
@@ -12,6 +15,8 @@ public class Event {
     @Size(min = 3,max = 50,message = "Name must be between 3 and 50 characters!")
     @NotBlank
     private String name;
+
+    private EventType type;
 
     @Size(max=500, message = "Description too long!")
     private String description;
@@ -29,20 +34,25 @@ public class Event {
     @Positive
     private int numberOfAttendees;
 
+    @DateTimeFormat(pattern ="yyyy-mm-dd")
+    private Date date;
+
     public Event(){
         this.id = nextId;
         nextId++;
     }
 
-    public Event(String name,String description,String contactEmail,String location,
-                 boolean isRegistrationRequired,int numberOfAttendees) {
+    public Event(String name,EventType type,String description,String contactEmail,String location,
+                 boolean isRegistrationRequired,int numberOfAttendees,Date date) {
         this();
         this.name = name;
+        this.type = type;
         this.description = description;
         this.contactEmail = contactEmail;
         this.location = location;
         this.isRegistrationRequired = isRegistrationRequired;
         this.numberOfAttendees = numberOfAttendees;
+        this.date = date;
 
     }
 
@@ -53,6 +63,14 @@ public class Event {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     public String getDescription() {
@@ -93,6 +111,14 @@ public class Event {
 
     public void setNumberOfAttendees(int numberOfAttendees) {
         this.numberOfAttendees = numberOfAttendees;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getId() {
