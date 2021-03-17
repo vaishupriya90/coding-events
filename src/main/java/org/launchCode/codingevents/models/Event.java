@@ -28,7 +28,7 @@ public class Event {
     @NotBlank(message = "Location is required!")
     private String location;
 
-    @AssertTrue(message = "Registration is required at this time!")
+    //@AssertTrue(message = "Registration is required at this time!")
     private boolean isRegistrationRequired;
 
     @Positive
