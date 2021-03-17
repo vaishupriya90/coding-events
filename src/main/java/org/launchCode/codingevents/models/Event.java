@@ -2,6 +2,9 @@ package org.launchCode.codingevents.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -9,10 +12,12 @@ import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class Event {
 
+    @Id // sets this field as the id/primary key in the database
+    @GeneratedValue // auto-increments the value of the id in the db
     private int id;
-    private static int nextId = 1;
 
     @Size(min = 3,max = 50,message = "Name must be between 3 and 50 characters!")
     @NotBlank
@@ -39,14 +44,11 @@ public class Event {
     @DateTimeFormat(pattern ="yyyy-mm-dd")
     private Date date;
 
-    public Event(){
-        this.id = nextId;
-        nextId++;
-    }
+    public Event(){} // JPA uses this empty constructor
+
 
     public Event(String name,EventType type,String description,String contactEmail,String location,
                  boolean isRegistrationRequired,int numberOfAttendees,Date date) {
-        this();
         this.name = name;
         this.type = type;
         this.description = description;
