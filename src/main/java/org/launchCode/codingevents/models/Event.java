@@ -2,6 +2,7 @@ package org.launchCode.codingevents.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Event {
+
     private int id;
     private static int nextId = 1;
 
