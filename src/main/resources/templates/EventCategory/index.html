@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+<nav th:replace="fragments :: navigationLinks"></nav>
+
+<div class="container-fluid">
+    <table class=" table table-striped">
+        <th>Category Name</th>
+        <tr th:each="c:${categories}">
+            <td th:text="${c.getName()}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
