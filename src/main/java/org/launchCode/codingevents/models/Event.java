@@ -13,19 +13,16 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class Event {
+public class Event extends AbstractEntity {
 
-    @Id // sets this field as the id/primary key in the database
-    @GeneratedValue // auto-increments the value of the id in the db
-    private int id;
 
-    @Size(min = 3,max = 50,message = "Name must be between 3 and 50 characters!")
+    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters!")
     @NotBlank
     private String name;
 
     private EventType type;
 
-    @Size(max=500, message = "Description too long!")
+    @Size(max = 500, message = "Description too long!")
     private String description;
 
     @NotBlank
@@ -41,14 +38,15 @@ public class Event {
     @Positive
     private int numberOfAttendees;
 
-    @DateTimeFormat(pattern ="yyyy-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date date;
 
-    public Event(){} // JPA uses this empty constructor
+    public Event() {
+    } // JPA uses this empty constructor
 
 
-    public Event(String name,EventType type,String description,String contactEmail,String location,
-                 boolean isRegistrationRequired,int numberOfAttendees,Date date) {
+    public Event(String name, EventType type, String description, String contactEmail, String location,
+                 boolean isRegistrationRequired, int numberOfAttendees, Date date) {
         this.name = name;
         this.type = type;
         this.description = description;
@@ -125,25 +123,9 @@ public class Event {
         this.date = date;
     }
 
-    public int getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
         return this.name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Event event = (Event) o;
-        return id == event.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
