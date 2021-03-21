@@ -28,6 +28,7 @@ public class EventCategoryController {
     @GetMapping("create")
     public String renderCreateEventCategoryForm(Model model){
         model.addAttribute("title","Create Category");
+        model.addAttribute("eventCategory",new EventCategory());
         return "EventCategory/create";
     }
 

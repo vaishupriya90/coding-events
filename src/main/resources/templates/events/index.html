@@ -13,7 +13,7 @@
     <tr>
         <th>Event ID</th>
         <th>Event Name</th>
-        <th>Event Type</th>
+        <th>Event Category</th>
         <th>Description</th>
         <th>Contact Email</th>
         <th>Event Location</th>
@@ -25,7 +25,7 @@
     <tr th:each="event:${events}">
         <td th:text="${event.getId()}"></td>
         <td th:text="${event.getName()}"></td>
-        <td th:text="${event.type.displayName}"></td>
+        <td th:text="${event.category.getName()}"></td>
         <td th:text="${event.getDescription()}"></td>
         <td th:text="${event.getContactEmail()}"></td>
         <td th:text="${event.getLocation}"></td>

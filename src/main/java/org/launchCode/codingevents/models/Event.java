@@ -3,14 +3,9 @@ package org.launchCode.codingevents.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.Valid;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.*;
-
-
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 public class Event extends AbstractEntity {
@@ -20,7 +15,9 @@ public class Event extends AbstractEntity {
     @NotBlank
     private String name;
 
-    private EventType type;
+    @ManyToOne
+    @NotNull(message = "Category is required")
+    private EventCategory category;
 
     @Size(max = 500, message = "Description too long!")
     private String description;
@@ -45,10 +42,10 @@ public class Event extends AbstractEntity {
     } // JPA uses this empty constructor
 
 
-    public Event(String name, EventType type, String description, String contactEmail, String location,
+    public Event(String name, EventCategory category, String description, String contactEmail, String location,
                  boolean isRegistrationRequired, int numberOfAttendees, Date date) {
         this.name = name;
-        this.type = type;
+        this.category = category;
         this.description = description;
         this.contactEmail = contactEmail;
         this.location = location;
@@ -67,12 +64,11 @@ public class Event extends AbstractEntity {
         this.name = name;
     }
 
-    public EventType getType() {
-        return type;
+    public EventCategory getCategory() {
+        return category;
     }
-
-    public void setType(EventType type) {
-        this.type = type;
+    public void setCategory(EventCategory category) {
+        this.category = category;
     }
 
     public String getDescription() {

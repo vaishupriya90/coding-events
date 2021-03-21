@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
-<form action="create" method="post">
-    <div>
-        <lable>Name
-        <input type="text" name="name">
-        </lable>
-        <input type="submit" value="Create Category!">
-    </div>
-</form>
+
+<body class="container">
+<nav th:replace="fragments :: navigationLinks"></nav>
+<div class="form-group">
+
+    <form action="create" method="post" >
+        <div class="form-group">
+            <label>Name
+                <input type="text" name="name" class="form-control"/>
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Create Category!" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+
+
 
 </body>
 </html>
