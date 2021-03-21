@@ -9,8 +9,8 @@
 <div class="container-fluid">
     <table class=" table table-striped">
         <th>Category Name</th>
-        <tr th:each="c:${categories}">
-            <td th:text="${c.getName()}"></td>
+        <tr th:each="category:${categories}">
+            <td><a th:href="'/events?categoryId='+ ${category.id}" th:text="${category.getName()}"></a></td>
         </tr>
     </table>
 </div>
