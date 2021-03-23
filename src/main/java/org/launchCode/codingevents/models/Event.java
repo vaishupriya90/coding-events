@@ -3,13 +3,12 @@ package org.launchCode.codingevents.models;
 import org.hibernate.engine.internal.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Event extends AbstractEntity {
@@ -27,6 +26,9 @@ public class Event extends AbstractEntity {
     @NotNull
     @Valid
     private EventDetails eventDetails;
+
+    @ManyToMany
+    private final List<Tag> tags =  new ArrayList<>();
 
     public Event() {
     } // JPA uses this empty constructor
@@ -59,6 +61,14 @@ public class Event extends AbstractEntity {
 
     public void setEventDetails(EventDetails eventDetails) {
         this.eventDetails = eventDetails;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void addTag(Tag tag){
+        this.tags.add(tag);
     }
 
     @Override
