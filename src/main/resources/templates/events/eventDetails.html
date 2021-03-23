@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+<nav th:replace="fragments :: navigationLinks"></nav>
+
+<table class="table table-striped">
+    <tr>
+        <th>Event ID</th>
+        <td th:text="${event.getId()}"></td>
+    </tr>
+
+    <tr>
+        <th>Event Category</th>
+        <td th:text="${event.category.getName()}"></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td th:text="${eventDetails.getDescription()}"></td>
+    </tr>
+    <tr>
+        <th>Contact Email</th>
+        <td th:text="${eventDetails.getContactEmail()}"></td>
+    </tr>
+    <tr>
+        <th>Event Location</th>
+        <td th:text="${eventDetails.getLocation}"></td>
+    </tr>
+    <tr>
+        <th>Number Of Attendees</th>
+        <td th:text="${eventDetails.getNumberOfAttendees()}"></td>
+    </tr>
+    <tr>
+        <th>Date</th>
+        <td th:text="${eventDetails.getDate()}"></td>
+    </tr>
+
+
+</table>
+
+
+</body>
+<td><a th:href="@{/events/edit/{id} (id=${event.getId()})}">Edit</a></td>
+
+</html>

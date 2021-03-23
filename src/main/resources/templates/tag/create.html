@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<nav th:replace="fragments :: navigationLinks"></nav>
+
+<form method="post">
+    <div class="form-group">
+        <lable>Tag Name
+        <input th:field="${tag.name}" class="form-control">
+        </lable>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create Tag!">
+    </div>
+</form>
+
+</body>
+</html>

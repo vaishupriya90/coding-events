@@ -4,6 +4,7 @@ import org.launchCode.codingevents.data.EventCategoryRepository;
 import org.launchCode.codingevents.data.EventRepository;
 import org.launchCode.codingevents.models.Event;
 import org.launchCode.codingevents.models.EventCategory;
+import org.launchCode.codingevents.models.EventDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,5 +105,16 @@ public class EventController {
 
         eventRepository.save(eventToBeEdited);
         return "redirect:";
+    }
+
+    @GetMapping("details/{eventId}")
+    public String eventDetails(@PathVariable int eventId,Model model){
+        Optional<Event> result = eventRepository.findById(eventId);
+        Event event = result.get();
+         EventDetails eventDetails = event.getEventDetails();
+         model.addAttribute("event",event);
+        model.addAttribute("eventDetails",eventDetails);
+        return "events/eventDetails";
+
     }
 }

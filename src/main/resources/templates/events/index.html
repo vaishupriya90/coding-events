@@ -3,40 +3,16 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container">
-<h1>All Events</h1>
 <nav th:replace="fragments :: navigationLinks"></nav>
 
 <p th:unless="${events} and ${events.size()}"> No Events scheduled yet!</p>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Event ID</th>
-        <th>Event Name</th>
-        <th>Event Category</th>
-        <th>Description</th>
-        <th>Contact Email</th>
-        <th>Event Location</th>
-        <th>Number Of Attendees</th>
-        <th>Date</th>
+    <ul >
+        <li th:each="event : ${events}">
+            <a th:text="${event.name}" th:href="'/events/details/'+ ${event.id}"></a>
 
-    </tr>
-    </thead>
-    <tr th:each="event:${events}">
-        <td th:text="${event.getId()}"></td>
-        <td th:text="${event.getName()}"></td>
-        <td th:text="${event.category.getName()}"></td>
-        <td th:text="${event.eventDetails.getDescription()}"></td>
-        <td th:text="${event.eventDetails.getContactEmail()}"></td>
-        <td th:text="${event.eventDetails.getLocation}"></td>
-        <td th:text="${event.eventDetails.getNumberOfAttendees()}"></td>
-        <td th:text="${event.eventDetails.getDate()}"></td>
-        <td><a th:href="@{/events/edit/{id} (id=${event.getId()})}">Edit</a></td>
-
-    </tr>
-
-</table>
-
+        </li>
+    </ul>
 
 </body>
 </html>
