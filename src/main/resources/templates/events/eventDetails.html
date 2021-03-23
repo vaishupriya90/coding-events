@@ -35,9 +35,16 @@
         <th>Date</th>
         <td th:text="${eventDetails.getDate()}"></td>
     </tr>
-
+    <tr>
+        <th>Tags</th>
+        <td>
+            <span th:each="tag : ${event.tags}" th:text="${tag.displayName} + ' '"></span>
+        </td>
+    </tr>
 
 </table>
+
+<span><a th:href="'/events/add-tag?eventId=' + ${event.id}">Add Tags</a></span>
 
 
 </body>

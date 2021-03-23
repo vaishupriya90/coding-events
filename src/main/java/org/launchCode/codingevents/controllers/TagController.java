@@ -38,7 +38,7 @@ public class TagController {
 
     @PostMapping("create")
     public String create(@ModelAttribute Tag newTag, Model model){
-        newTag.setName("#"+newTag.getName());
+        //newTag.setName("#"+newTag.getName());
         tagRepository.save(newTag);
         return "redirect:";
 

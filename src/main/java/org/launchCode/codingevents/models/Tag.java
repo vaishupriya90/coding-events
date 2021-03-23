@@ -27,6 +27,10 @@ public class Tag extends AbstractEntity{
         return name;
     }
 
+    public String displayName(){
+        return "#"+this.getName();
+    }
+
     public void setName(String name) {
         this.name = name;
     }
