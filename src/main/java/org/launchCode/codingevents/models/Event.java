@@ -1,9 +1,13 @@
 package org.launchCode.codingevents.models;
 
+import org.hibernate.engine.internal.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -19,42 +23,20 @@ public class Event extends AbstractEntity {
     @NotNull(message = "Category is required")
     private EventCategory category;
 
-    @Size(max = 500, message = "Description too long!")
-    private String description;
-
-    @NotBlank
-    @Email(message = "Invalid email! Please try again!")
-    private String contactEmail;
-
-    @NotBlank(message = "Location is required!")
-    private String location;
-
-    //@AssertTrue(message = "Registration is required at this time!")
-    private boolean isRegistrationRequired;
-
-    @Positive
-    private int numberOfAttendees;
-
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date date;
+    @OneToOne(cascade = CascadeType.ALL)
+    @NotNull
+    @Valid
+    private EventDetails eventDetails;
 
     public Event() {
     } // JPA uses this empty constructor
 
 
-    public Event(String name, EventCategory category, String description, String contactEmail, String location,
-                 boolean isRegistrationRequired, int numberOfAttendees, Date date) {
+    public Event(String name, EventCategory category) {
         this.name = name;
         this.category = category;
-        this.description = description;
-        this.contactEmail = contactEmail;
-        this.location = location;
-        this.isRegistrationRequired = isRegistrationRequired;
-        this.numberOfAttendees = numberOfAttendees;
-        this.date = date;
 
     }
-
 
     public String getName() {
         return name;
@@ -71,52 +53,12 @@ public class Event extends AbstractEntity {
         this.category = category;
     }
 
-    public String getDescription() {
-        return description;
+    public EventDetails getEventDetails() {
+        return eventDetails;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getContactEmail() {
-        return contactEmail;
-    }
-
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public boolean getIsRegistrationRequired() {
-        return isRegistrationRequired;
-    }
-
-    public void setIsRegistrationRequired(boolean registrationRequired) {
-        isRegistrationRequired = registrationRequired;
-    }
-
-    public int getNumberOfAttendees() {
-        return numberOfAttendees;
-    }
-
-    public void setNumberOfAttendees(int numberOfAttendees) {
-        this.numberOfAttendees = numberOfAttendees;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setEventDetails(EventDetails eventDetails) {
+        this.eventDetails = eventDetails;
     }
 
     @Override

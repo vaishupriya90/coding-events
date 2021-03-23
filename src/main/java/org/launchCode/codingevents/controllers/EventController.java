@@ -97,10 +97,10 @@ public class EventController {
         }
         Event eventToBeEdited = eventRepository.findById(eventId).get();
         eventToBeEdited.setName(event.getName());
-        eventToBeEdited.setDescription(event.getDescription());
-        eventToBeEdited.setContactEmail(event.getContactEmail());
-        eventToBeEdited.setLocation(event.getLocation());
-        eventToBeEdited.setNumberOfAttendees(event.getNumberOfAttendees());
+        eventToBeEdited.getEventDetails().setDescription(event.getEventDetails().getDescription());
+        eventToBeEdited.getEventDetails().setContactEmail(event.getEventDetails().getContactEmail());
+        eventToBeEdited.getEventDetails().setLocation(event.getEventDetails().getLocation());
+        eventToBeEdited.getEventDetails().setNumberOfAttendees(event.getEventDetails().getNumberOfAttendees());
 
         eventRepository.save(eventToBeEdited);
         return "redirect:";
